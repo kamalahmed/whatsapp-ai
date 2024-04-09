@@ -120,8 +120,8 @@ export const users = [
 		_id: "user4",
 		name: "Muhammad",
 		email: "muhammad@email.com",
-		image: "https://randomuser.me/api/portraits/men/67.jpg",
-		admin: true,
+		image: "https://randomuser.me/api/portraits/men/68.jpg",
+		admin: false,
 		isOnline: true,
 	},
 ];
