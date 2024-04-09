@@ -3,11 +3,12 @@ import { httpAction } from "./_generated/server";
 import { internal } from "./_generated/api";
 
 const http = httpRouter();
-
+console.log("Http file is loaded");
 http.route({
 	path: "/clerk",
 	method: "POST",
 	handler: httpAction(async (ctx, req) => {
+        console.log('Hit POST request in convex http handler');
 		const payloadString = await req.text();
 		const headerPayload = req.headers;
 
