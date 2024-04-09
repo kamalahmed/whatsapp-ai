@@ -7,7 +7,7 @@ import ChatPlaceHolder from "@/components/home/chat-placeholder";
 import GroupMembersDialog from "./group-members-dialog";
 
 const RightPanel = () => {
-	const selectedConversation = null;
+	const selectedConversation = true;
 	if (!selectedConversation) return <ChatPlaceHolder />;
 
 	const conversationName = "John Doe";
