@@ -3,21 +3,32 @@ import { internalMutation, query } from "./_generated/server";
 
 export const createUser = internalMutation({
 	args: {
-		tokenIdentifier: v.string(),
-		email: v.string(),
-		name: v.string(),
-		image: v.string(),
+	  tokenIdentifier: v.string(),
+	  email: v.string(),
+	  name: v.string(),
+	  image: v.string(),
 	},
 	handler: async (ctx, args) => {
-		await ctx.db.insert("users", {
-			tokenIdentifier: args.tokenIdentifier,
-			email: args.email,
-			name: args.name,
-			image: args.image,
-			isOnline: true,
-		});
+	  // Query to check if an email already exists
+	  const existingUser = await ctx.db.query("users")
+		.filter(q => q.eq("email", args.email))
+		.first();
+  
+	  // If an existing user with the same email is found, throw an error
+	  if (existingUser) {
+		throw new ConvexError("Email already in use.");
+	  }
+  
+	  // Proceed to insert the new user as the email is unique
+	  await ctx.db.insert("users", {
+		tokenIdentifier: args.tokenIdentifier,
+		email: args.email,
+		name: args.name,
+		image: args.image,
+		isOnline: true,
+	  });
 	},
-});
+  });
 
 export const updateUser = internalMutation({
 	args: { tokenIdentifier: v.string(), image: v.string() },
