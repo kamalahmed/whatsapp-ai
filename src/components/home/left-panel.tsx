@@ -44,7 +44,6 @@ const LeftPanel = () => {
 
 			{/* Chat List */}
 			<div className='my-3 flex flex-col gap-0 max-h-[80%] overflow-auto'>
-				{/* Conversations will go here*/}
 
                 {conversations?.map((conversation) => (
                     <Conversation key={conversation._id} conversation={conversation} />
