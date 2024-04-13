@@ -37,7 +37,11 @@ const MessageInput = () => {
 						<EmojiPicker 
 						theme={Theme.DARK}
 						style={{position: 'absolute', bottom: '1.5rem', left:'1rem', zIndex:50}}
-
+						onEmojiClick={
+							(emojiObj, e) => {
+                                setMsgText(prev => prev + emojiObj.emoji);
+                            }
+						}
 						
 						/>
 					)}
