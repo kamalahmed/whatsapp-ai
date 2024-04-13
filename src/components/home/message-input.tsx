@@ -6,12 +6,15 @@ import { useMutation, useQuery } from "convex/react";
 import { api } from "../../../convex/_generated/api";
 import { useConversationStore } from "@/store/chat-store";
 import toast from "react-hot-toast";
+import useComponentVisible from "@/hooks/useComponentsVisible";
+import EmojiPicker, {Theme} from "emoji-picker-react";
 
 const MessageInput = () => {
 	const [msgText, setMsgText] = useState("");
 	const sendTextMessage = useMutation(api.messages.sendTextMessage);
 	const { selectedConversation } = useConversationStore();
 	const me = useQuery(api.users.getMe);
+	const {ref, isComponentVisible, setIsComponentVisible} = useComponentVisible(false);
 
 	const handleTextMessage = async (e: React.FormEvent) => {
 		e.preventDefault();
@@ -28,8 +31,21 @@ const MessageInput = () => {
 	return (
 		<div className='bg-gray-primary p-2 flex gap-4 items-center'>
 			<div className='relative flex gap-2 ml-2'>
-				{/* EMOJI PICKER WILL GO HERE */}
-				<Laugh className='text-gray-600 dark:text-gray-400' />
+				{/* EMOJI PICKER Starts */}
+				<div ref={ref} onClick={()=> setIsComponentVisible(true)}>
+					{isComponentVisible && (
+						<EmojiPicker 
+						theme={Theme.DARK}
+						style={{position: 'absolute', bottom: '1.5rem', left:'0', zIndex:50}}
+
+						
+						/>
+					)}
+					<Laugh className='text-gray-600 dark:text-gray-400' />
+					
+				</div> 
+				{/*End Emoji Picker */}
+
 				<Plus className='text-gray-600 dark:text-gray-400' />
 			</div>
 			<form className='w-full flex gap-3' onSubmit={handleTextMessage}>
