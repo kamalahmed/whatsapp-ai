@@ -1,7 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["first-bandicoot-27.convex.cloud"],
+    remotePatterns: [
+      {
+        protocol: "https", // Assuming you are using HTTPS, otherwise adjust or remove this line
+        hostname: "first-bandicoot-27.convex.cloud",
+      },
+    ],
   },
 };
 
