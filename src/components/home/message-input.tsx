@@ -8,6 +8,7 @@ import { useConversationStore } from "@/store/chat-store";
 import toast from "react-hot-toast";
 import useComponentVisible from "@/hooks/useComponentsVisible";
 import EmojiPicker, {Theme} from "emoji-picker-react";
+import MediaDropdown from "./media-dropdown";
 
 const MessageInput = () => {
 	const [msgText, setMsgText] = useState("");
@@ -20,6 +21,7 @@ const MessageInput = () => {
 		e.preventDefault();
 
 		try {
+			if (msgText.trim().length === 0) return;
 			await sendTextMessage({content: msgText, conversation: selectedConversation!._id, sender: me!._id }); // Here ! means telling ts it will always be available.
 			setMsgText("");
 		} catch (error:any) {
@@ -50,7 +52,7 @@ const MessageInput = () => {
 				</div> 
 				{/*End Emoji Picker */}
 
-				<Plus className='text-gray-600 dark:text-gray-400' />
+				<MediaDropdown/>
 			</div>
 			<form className='w-full flex gap-3' onSubmit={handleTextMessage}>
 				<div className='flex-1'>
