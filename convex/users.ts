@@ -84,11 +84,9 @@ export const getUsers = query({
 	args: {},
 	handler: async (ctx, args) => {
 		const identity = await ctx.auth.getUserIdentity();
-		console.log("logging Identity: ", identity);
 		if (!identity) {
 			throw new ConvexError("Unauthorized");
 		}
-		// return [];
 
 		const users = await ctx.db.query("users").collect();
 		return users.filter((user) => user.tokenIdentifier !== identity.tokenIdentifier);
