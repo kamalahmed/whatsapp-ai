@@ -2,7 +2,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Live Preview
 View Live Preview [https://whatsapp-ai-opal.vercel.app/](https://whatsapp-ai-opal.vercel.app/)
-
+![Preview Image of the app](public/whatsapp-ai.png)
 ## Getting Started
 
 First, run the development server:
