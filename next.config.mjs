@@ -3,8 +3,12 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: "https", // Assuming you are using HTTPS, otherwise adjust or remove this line
+        protocol: "https",
         hostname: "first-bandicoot-27.convex.cloud",
+      },
+      {
+        protocol: "https",
+        hostname: "oaidalleapiprodscus.blob.core.windows.net",
       },
     ],
   },

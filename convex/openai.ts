@@ -6,19 +6,20 @@ import { api } from "./_generated/api";
 const apiKey = process.env.OPENAI_API_KEY;
 const openai = new OpenAI({ apiKey });
 
+console.log(openai);
+
 export const chat = action({
 	args: {
 		messageBody: v.string(),
 		conversation: v.id("conversations"),
 	},
 	handler: async (ctx, args) => {
-		console.log(' We are in the chat before making the request');
 		const res = await openai.chat.completions.create({
 			model: "gpt-3.5-turbo", // "gpt-4" also works, but is so slow!
 			messages: [
 				{
 					role: "system",
-					content: "You are a terse bot in a group chat responding to questions with 1-sentence answers",
+					content: "You are a terse bot in a group chat responding to questions with maximum 10-sentence answers",
 				},
 				{
 					role: "user",
@@ -26,9 +27,6 @@ export const chat = action({
 				},
 			],
 		});
-
-		console.log(' We are in the chat after the request');
-		console.log(res);
 
 		const messageContent = res.choices[0].message.content;
 
