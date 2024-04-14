@@ -1,5 +1,8 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## Live Preview
+View Live Preview [https://whatsapp-ai-opal.vercel.app/](https://whatsapp-ai-opal.vercel.app/)
+
 ## Getting Started
 
 First, run the development server:
@@ -13,8 +16,12 @@ pnpm dev
 # or
 bun dev
 ```
+Edit the .env-sample to .env.local and then enter the credentials from each services
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+For Getting response from chat gpt use `@gpt` then your message. eg. @gpt what is best healthy breakfast?
+For Dalle image generation, you can use '@dall-e imagine a cow flying'. Note, in the test app, please do not use more than 1 dalle request. because it is paid service and I am using my own money for showcasing the demo. It is a request.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
